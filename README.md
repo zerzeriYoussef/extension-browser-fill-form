@@ -48,7 +48,7 @@ A browser extension that allows users to automatically fill forms with a single 
 ### Setup
 1. Clone the repository:
 ```
-git clone https://github.com/yourusername/form-autofiller
+git clone https://github.com/zerzeriYoussef/extension-browser-fill-form.git
 ```
 2. Install dependencies:
 ```
@@ -68,8 +68,8 @@ This project is licensed under the GNU General Public License v2.0 - see the [LI
 
 ## Author
 
-Created by Stefan vd - [www.stefanvd.net](https://www.stefanvd.net)
+Created by youssef zerzeri
 
 ## Support
 
-For support, please visit [www.stefanvd.net/support/](https://www.stefanvd.net/support/)
+For support, please visit https://github.com/zerzeriYoussef
