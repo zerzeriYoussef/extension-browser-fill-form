@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<!--
+//================================================
+/*
+
+Browser extension starter template
+The development ready template for beginner
+Copyright (C) 2022 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+*/
+//================================================
+-->
+	<title data-i18n="optionpagetitle">Form AutoFiller Options</title>
+	<link rel="stylesheet" type="text/css" href="css/options.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<script type="text/javascript" src="js/constants.js"></script>
+	<script type="text/javascript" src="js/options.js"></script>
+	<meta name="color-scheme" content="light dark">
+	<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#232323" media="(prefers-color-scheme: dark)">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+
+<body>
+	<div id="mainview">
+		<div class="page">
+			<h1>Form AutoFiller</h1>
+			<h2>Configure your form data</h2>
+
+			<div class="option">
+				<h3>Personal Information</h3>
+				<p>Enter your personal information to use when filling forms</p>
+
+				<label for="optFullName">Full Name:</label>
+				<input type="text" id="optFullName" placeholder="John Smith">
+
+				<label for="optEmail">Email Address:</label>
+				<input type="email" id="optEmail" placeholder="john@example.com">
+
+				<label for="optPhone">Phone Number:</label>
+				<input type="tel" id="optPhone" placeholder="+1234567890">
+			</div>
+
+			<div class="option">
+				<h3>Address Information</h3>
+				<p>Enter your address to use when filling forms</p>
+
+				<label for="optStreetAddress">Street Address:</label>
+				<input type="text" id="optStreetAddress" placeholder="123 Main St">
+
+				<label for="optCity">City:</label>
+				<input type="text" id="optCity" placeholder="New York">
+
+				<label for="optState">State/Province:</label>
+				<input type="text" id="optState" placeholder="NY">
+
+				<label for="optZipCode">Zip/Postal Code:</label>
+				<input type="text" id="optZipCode" placeholder="10001">
+
+				<label for="optCountry">Country:</label>
+				<input type="text" id="optCountry" placeholder="United States">
+			</div>
+
+			<div class="option">
+				<h3>Form Filling Preferences</h3>
+
+				<div class="checkbox">
+					<input type="checkbox" id="optUseCustomData">
+					<label for="optUseCustomData">Use my custom data instead of generating random data</label>
+				</div>
+
+				<div class="checkbox">
+					<input type="checkbox" id="optFillAllFields">
+					<label for="optFillAllFields">Fill all form fields, not just the current form</label>
+				</div>
+
+				<div class="select">
+					<label for="optFillStrategy">When filling dropdown lists:</label>
+					<select id="optFillStrategy">
+						<option value="first">Select first option</option>
+						<option value="random">Select random option</option>
+						<option value="matching">Try to select option matching my data</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="buttons">
+				<button id="save">Save Options</button>
+				<button id="reset">Reset to Default</button>
+			</div>
+
+			<div class="status" id="status"></div>
+
+			<div class="option">
+				<h3>Keyboard Shortcuts</h3>
+				<p>To fill a form with the keyboard, click in any form field and press <strong>Alt+F</strong></p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/translate.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Form AutoFiller",
+  "short_name": "AutoFill",
+  "version": "0.1",
+  "description": "Automatically fill forms with relevant data with one click",
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/16.png",
+    "24": "icons/24.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "96": "icons/96.png",
+    "128": "icons/128.png"
+  },
+  "default_locale": "en",
+  "action": {
+    "default_title": "Form AutoFiller",
+    "default_icon": {
+      "19": "icons/19.png",
+      "38": "icons/38.png"
+    }
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; style-src 'self'; media-src 'none'; child-src 'none'; connect-src 'none'; script-src 'self'; img-src 'self'; object-src 'none'"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      }
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "103",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "contextMenus"
+  ]
+}
