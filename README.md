@@ -1,39 +1,75 @@
-# browser-extension-starter-template
-Chrome extension template - For Beginners with the necessary dev function
-For Google Chrome web browser
-and for other browsers such as
-Google Chrome, Firefox, Opera, Safari, Maxthon, Yandex, Brave, Vivaldi, Cốc Cốc, Microsoft Edge, and Naver Whale.
+# Form AutoFiller Extension
 
-## For who?
-This is the starter template for new developers, fresh developers that want to get started with building an amazing web experience in their web browser. This template includes all the basics you need with a concisely writing tool and dark mode support. And easy export function to upload it to the web store.
+A browser extension that allows users to automatically fill forms with a single click. Save time by pre-configuring your form data and applying it instantly to any web form.
 
-## What I need to learn?
-+ You need to learn only the vanila JavaScript
-+ CSS
-+ HTML
-+ JSON
+## Features
 
-# Template
-+ Manifest V3 support
-+ Support for Dark Mode and Light Mode
-+ Options page
+- **One-Click Form Filling**: Fill entire forms with a single click
+- **Context Menu Integration**: Right-click on form fields for quick filling
+- **Keyboard Shortcut**: Use Ctrl+Shift+F (or MacCtrl+Shift+F on Mac) to activate
+- **Customizable Fields**: Configure your personal data in the options page
+- **Privacy-Focused**: All your data is stored locally in your browser
+- **Cross-Browser Support**: Works with Chrome, Firefox, Edge, Opera, and other Chromium-based browsers
 
-Support for Windows and Mac
+## Installation
 
-# Development
-+ Use ESLint
-+ Use less external dev library
-+ One command to package the zip file for the Chrome Web Store
+### From Web Store
+1. Visit the Chrome Web Store (link coming soon)
+2. Click "Add to Chrome"
+3. Confirm the installation
 
-# How to get started?
-1. Open <strong>Terminal</strong> (on Mac) and <strong>Prompt</strong> (on Windows)
-2. Type `git clone`, and then paste the URL you copied earlier.
+### Manual Installation (Developer Mode)
+1. Download or clone this repository
+2. Open your browser and navigate to the extensions page:
+   - Chrome: `chrome://extensions/`
+   - Edge: `edge://extensions/`
+   - Firefox: `about:addons`
+3. Enable "Developer mode"
+4. Click "Load unpacked" and select the `src` folder from this repository
+
+## Usage
+
+1. Click the Form AutoFiller icon in your browser toolbar, or use the keyboard shortcut (Ctrl+Shift+F)
+2. Alternatively, right-click on any form field and select "Remplir la form" from the context menu
+3. The form will be automatically filled with your pre-configured data
+
+## Configuration
+
+1. Right-click on the extension icon and select "Options"
+2. Enter your personal information that you want to use for form filling
+3. Save your settings
+4. Your data is stored locally in your browser and is never sent to any server
+
+## Development
+
+### Prerequisites
+- Node.js and npm
+
+### Setup
+1. Clone the repository:
 ```
-git clone https://github.com/stefanvd/browser-extension-starter-template
+git clone https://github.com/yourusername/form-autofiller
 ```
-3. Press `Enter` to create your local clone.
+2. Install dependencies:
+```
+npm install
+```
 
-# Packaging
-Run `npm run dist` to create a zipped, production-ready extension for each browser. You can then upload that to the web store.
+### Build
+Run `npm run dist` to create a zipped, production-ready extension for each browser.
 
-This template is used for the most popular [Turn Off the Lights browser extension](https://github.com/turnoffthelights/Turn-Off-the-Lights-Chrome-extension). Turn Off the Lights is a free and Open-Source browser extension. https://www.turnoffthelights.com
+## Privacy
+
+This extension stores all your data locally in your browser. No data is sent to any external servers.
+
+## License
+
+This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+Created by Stefan vd - [www.stefanvd.net](https://www.stefanvd.net)
+
+## Support
+
+For support, please visit [www.stefanvd.net/support/](https://www.stefanvd.net/support/)
