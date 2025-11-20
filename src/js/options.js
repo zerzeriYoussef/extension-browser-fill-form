@@ -35,13 +35,15 @@ function $(id) { return document.getElementById(id); }
 
 // Default form data settings
 const defaultSettings = {
-	useCustomData: false,
+	autoFillOnLoad: false,
 	fillAllFields: true,
 	fillStrategy: 'random',
-	personalInfo: {
-		fullName: '',
+	profile: {
+		firstName: '',
+		lastName: '',
 		email: '',
-		phone: ''
+		phone: '',
+		linkedIn: ''
 	},
 	addressInfo: {
 		streetAddress: '',
@@ -52,27 +54,30 @@ const defaultSettings = {
 	}
 };
 
-// Save options to chrome.storage
+// Save options to chrome.storage.local (privacy-focused)
 function saveOptions() {
 	const settings = {
-		useCustomData: $("optUseCustomData").checked,
+		autoFillOnLoad: $("optAutoFillOnLoad").checked,
 		fillAllFields: $("optFillAllFields").checked,
 		fillStrategy: $("optFillStrategy").value,
-		personalInfo: {
-			fullName: $("optFullName").value,
-			email: $("optEmail").value,
-			phone: $("optPhone").value
+		profile: {
+			firstName: $("optFirstName").value.trim(),
+			lastName: $("optLastName").value.trim(),
+			email: $("optEmail").value.trim(),
+			phone: $("optPhone").value.trim(),
+			linkedIn: $("optLinkedIn").value.trim()
 		},
 		addressInfo: {
-			streetAddress: $("optStreetAddress").value,
-			city: $("optCity").value,
-			state: $("optState").value,
-			zipCode: $("optZipCode").value,
-			country: $("optCountry").value
+			streetAddress: $("optStreetAddress").value.trim(),
+			city: $("optCity").value.trim(),
+			state: $("optState").value.trim(),
+			zipCode: $("optZipCode").value.trim(),
+			country: $("optCountry").value.trim()
 		}
 	};
 
-	chrome.storage.sync.set({ settings }, () => {
+	// Use chrome.storage.local for privacy (data stays on device)
+	chrome.storage.local.set({ settings }, () => {
 		// Update status to let user know options were saved
 		const status = $("status");
 		status.textContent = 'Options saved.';
@@ -82,41 +87,56 @@ function saveOptions() {
 	});
 }
 
-// Restore options from chrome.storage
+// Restore options from chrome.storage.local
 function restoreOptions() {
-	chrome.storage.sync.get({ settings: defaultSettings }, (data) => {
+	chrome.storage.local.get({ settings: defaultSettings }, (data) => {
 		const { settings } = data;
 
 		// Restore form preferences
-		$("optUseCustomData").checked = settings.useCustomData;
-		$("optFillAllFields").checked = settings.fillAllFields;
-		$("optFillStrategy").value = settings.fillStrategy;
+		$("optAutoFillOnLoad").checked = settings.autoFillOnLoad || false;
+		$("optFillAllFields").checked = settings.fillAllFields !== undefined ? settings.fillAllFields : true;
+		$("optFillStrategy").value = settings.fillStrategy || 'random';
 
-		// Restore personal info
-		$("optFullName").value = settings.personalInfo.fullName;
-		$("optEmail").value = settings.personalInfo.email;
-		$("optPhone").value = settings.personalInfo.phone;
+		// Restore profile info (handle migration from old format)
+		if (settings.profile) {
+			$("optFirstName").value = settings.profile.firstName || '';
+			$("optLastName").value = settings.profile.lastName || '';
+			$("optEmail").value = settings.profile.email || '';
+			$("optPhone").value = settings.profile.phone || '';
+			$("optLinkedIn").value = settings.profile.linkedIn || '';
+		} else if (settings.personalInfo) {
+			// Migrate from old format (fullName to firstName/lastName)
+			const fullName = settings.personalInfo.fullName || '';
+			const nameParts = fullName.split(' ');
+			$("optFirstName").value = nameParts[0] || '';
+			$("optLastName").value = nameParts.slice(1).join(' ') || '';
+			$("optEmail").value = settings.personalInfo.email || '';
+			$("optPhone").value = settings.personalInfo.phone || '';
+			$("optLinkedIn").value = '';
+		}
 
 		// Restore address info
-		$("optStreetAddress").value = settings.addressInfo.streetAddress;
-		$("optCity").value = settings.addressInfo.city;
-		$("optState").value = settings.addressInfo.state;
-		$("optZipCode").value = settings.addressInfo.zipCode;
-		$("optCountry").value = settings.addressInfo.country;
+		$("optStreetAddress").value = settings.addressInfo?.streetAddress || '';
+		$("optCity").value = settings.addressInfo?.city || '';
+		$("optState").value = settings.addressInfo?.state || '';
+		$("optZipCode").value = settings.addressInfo?.zipCode || '';
+		$("optCountry").value = settings.addressInfo?.country || '';
 	});
 }
 
 // Reset options to default values
 function resetOptions() {
-	// Use custom data should be unchecked
-	$("optUseCustomData").checked = defaultSettings.useCustomData;
+	// Reset preferences
+	$("optAutoFillOnLoad").checked = defaultSettings.autoFillOnLoad;
 	$("optFillAllFields").checked = defaultSettings.fillAllFields;
 	$("optFillStrategy").value = defaultSettings.fillStrategy;
 
-	// Clear personal info
-	$("optFullName").value = '';
+	// Clear profile info
+	$("optFirstName").value = '';
+	$("optLastName").value = '';
 	$("optEmail").value = '';
 	$("optPhone").value = '';
+	$("optLinkedIn").value = '';
 
 	// Clear address info
 	$("optStreetAddress").value = '';

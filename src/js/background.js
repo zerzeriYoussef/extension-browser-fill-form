@@ -54,14 +54,28 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 	}
 });
 
-// Handle extension icon clicks
+// Handle extension icon clicks - open options page
 chrome.action.onClicked.addListener(function (tab) {
-	if (tab.url.match(/^http/i) || tab.url.match(/^file/i)) {
-		if ((new URL(tab.url)).origin != browserstore && tab.url != browsernewtab) {
-			chrome.scripting.executeScript({
-				target: { tabId: tab.id },
-				files: ["js/run.js"]
-			});
-		}
+	// Open the options page for configuration
+	chrome.runtime.openOptionsPage();
+});
+
+// Handle keyboard shortcut (Ctrl+Shift+F) - trigger auto-fill
+chrome.commands.onCommand.addListener((command) => {
+	if (command === "_execute_browser_action") {
+		chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+			if (tabs[0]) {
+				const tab = tabs[0];
+				if (tab.url.match(/^http/i) || tab.url.match(/^file/i)) {
+					if ((new URL(tab.url)).origin != browserstore && tab.url != browsernewtab) {
+						// Trigger auto-fill on the current page
+						chrome.scripting.executeScript({
+							target: { tabId: tab.id },
+							files: ["js/run.js"]
+						});
+					}
+				}
+			}
+		});
 	}
 });

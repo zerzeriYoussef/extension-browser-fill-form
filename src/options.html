@@ -47,20 +47,26 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 	<div id="mainview">
 		<div class="page">
 			<h1>Form AutoFiller</h1>
-			<h2>Configure your form data</h2>
+			<h2>Configure your profile data (one-time setup)</h2>
 
 			<div class="option">
 				<h3>Personal Information</h3>
-				<p>Enter your personal information to use when filling forms</p>
+				<p>Enter your personal information to use when filling forms. This data is stored locally on your device and never sent to external servers.</p>
 
-				<label for="optFullName">Full Name:</label>
-				<input type="text" id="optFullName" placeholder="John Smith">
+				<label for="optFirstName">First Name:</label>
+				<input type="text" id="optFirstName" placeholder="John" autocomplete="given-name">
+
+				<label for="optLastName">Last Name:</label>
+				<input type="text" id="optLastName" placeholder="Smith" autocomplete="family-name">
 
 				<label for="optEmail">Email Address:</label>
-				<input type="email" id="optEmail" placeholder="john@example.com">
+				<input type="email" id="optEmail" placeholder="john@example.com" autocomplete="email">
 
 				<label for="optPhone">Phone Number:</label>
-				<input type="tel" id="optPhone" placeholder="+1234567890">
+				<input type="tel" id="optPhone" placeholder="+1234567890" autocomplete="tel">
+
+				<label for="optLinkedIn">LinkedIn URL:</label>
+				<input type="url" id="optLinkedIn" placeholder="https://linkedin.com/in/yourprofile" autocomplete="url">
 			</div>
 
 			<div class="option">
@@ -84,16 +90,16 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			</div>
 
 			<div class="option">
-				<h3>Form Filling Preferences</h3>
+				<h3>Auto-Fill Preferences</h3>
 
 				<div class="checkbox">
-					<input type="checkbox" id="optUseCustomData">
-					<label for="optUseCustomData">Use my custom data instead of generating random data</label>
+					<input type="checkbox" id="optAutoFillOnLoad">
+					<label for="optAutoFillOnLoad">Automatically fill forms when page loads</label>
 				</div>
 
 				<div class="checkbox">
 					<input type="checkbox" id="optFillAllFields">
-					<label for="optFillAllFields">Fill all form fields, not just the current form</label>
+					<label for="optFillAllFields">Fill all form fields on the page (not just the current form)</label>
 				</div>
 
 				<div class="select">
@@ -104,6 +110,14 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<option value="matching">Try to select option matching my data</option>
 					</select>
 				</div>
+			</div>
+
+			<div class="option">
+				<h3>Privacy & Security</h3>
+				<p style="color: #0f9d58; font-weight: 500;">✓ All your data is stored locally in your browser</p>
+				<p style="color: #0f9d58; font-weight: 500;">✓ No data is sent to external servers</p>
+				<p style="color: #0f9d58; font-weight: 500;">✓ No data collection or analytics</p>
+				<p style="margin-top: 10px; color: #5f6368;">Your personal information is encrypted and stored securely on your device only. The extension never transmits your data to any external servers.</p>
 			</div>
 
 			<div class="buttons">

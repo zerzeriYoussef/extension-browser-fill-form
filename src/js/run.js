@@ -31,46 +31,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var redborder = null;
-
-function addElement(id) {
-	chrome.storage.sync.get(["redborder"], function (response) {
-		redborder = response["redborder"];
-
-		const newDiv = document.createElement("div");
-		newDiv.id = id;
-		newDiv.style.width = "100px";
-		newDiv.style.height = "100px";
-		newDiv.style.background = "blue";
-		newDiv.style.color = "white";
-		newDiv.style.position = "absolute";
-		newDiv.style.top = "0";
-		newDiv.style.left = "0";
-		newDiv.style.zIndex = "1000";
-		if (redborder == true) {
-			newDiv.style.border = "5px solid red";
-		}
-		newDiv.innerText = "Element";
-		document.body.appendChild(newDiv);
-	});
-}
-
-function removeElement(id) {
-	var elem = document.getElementById(id);
-	return elem.parentNode.removeChild(elem);
-}
-
-if (document.getElementById("starter")) {
-	removeElement("starter");
-} else {
-	addElement("starter");
-}
-
-// This function will automatically fill all forms on the page
-function fillAllForms() {
-	// Find all form fields on the page
-	const inputFields = document.querySelectorAll('input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="reset"]), textarea, select');
-
+// This function will trigger the form auto-fill
+function triggerAutoFill() {
 	// Trigger a custom event that the content script will listen for
 	window.dispatchEvent(new CustomEvent('fillFormEvent', {
 		detail: { triggerElement: null }
@@ -78,4 +40,4 @@ function fillAllForms() {
 }
 
 // Run the form filling function
-fillAllForms();
+triggerAutoFill();
